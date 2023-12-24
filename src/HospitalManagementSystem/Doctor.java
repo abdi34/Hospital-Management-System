@@ -113,7 +113,8 @@ public class Doctor extends JFrame {
 
                 // Append doctor information to the StringBuilder
                 doctorInfo.append(String.format("| %-10s | %-18s | %-16s | %-17s\n", id, name, specialization, enrollmentDate));
-                doctorInfo.append("|------------------------------------------------------------------------------|\n");
+                  doctorInfo.append("|-----------+------------------+--------------------+-------------------------|\n");
+               
             }
 
             // Display the information in a JOptionPane
