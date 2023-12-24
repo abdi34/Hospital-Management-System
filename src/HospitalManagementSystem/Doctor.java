@@ -24,12 +24,14 @@ public class Doctor extends JFrame {
 
         // Create buttons
         JButton addDoctorButton = new JButton("Add Doctor");
+        JButton deleteDoctorButton = new JButton("Delete Doctor");
         JButton viewDoctorsButton = new JButton("View Doctors");
         JButton checkDoctorButton = new JButton("Check Doctor");
 
         // Set up the layout
         setLayout(new GridLayout(4, 1));
         add(addDoctorButton);
+        add(deleteDoctorButton);
         add(viewDoctorsButton);
         add(checkDoctorButton);
 
@@ -40,6 +42,12 @@ public class Doctor extends JFrame {
                 addDoctor();
             }
         });
+        deleteDoctorButton.addActionListener(new ActionListener() {
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            deleteDoctor();
+        }
+    });
 
         viewDoctorsButton.addActionListener(new ActionListener() {
             @Override
@@ -89,6 +97,29 @@ public class Doctor extends JFrame {
             JOptionPane.showMessageDialog(this, "Don't slack off Add The Required Information.", "Error", JOptionPane.ERROR_MESSAGE);
         }
     }
+    // Method to delete a doctor
+private void deleteDoctor() {
+    String idString = JOptionPane.showInputDialog("Enter Doctor ID:");
+    int id = Integer.parseInt(idString);
+
+    try {
+        // SQL query to delete a doctor by ID from the 'new_doctors' table
+        String query = "DELETE FROM new_doctors WHERE id = ?";
+        PreparedStatement preparedStatement = connection.prepareStatement(query);
+        preparedStatement.setInt(1, id);
+
+        // Execute the query and check if the doctor was deleted successfully
+        int affectedRows = preparedStatement.executeUpdate();
+        if (affectedRows > 0) {
+            JOptionPane.showMessageDialog(this, "Doctor Deleted Successfully!!");
+        } else {
+            JOptionPane.showMessageDialog(this, "Failed to delete Doctor. Doctor with ID " + id + " does not exist!");
+        }
+    } catch (SQLException ex) {
+        ex.printStackTrace();
+        JOptionPane.showMessageDialog(this, "Error: " + ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+    }
+}
 
     // Method to view all doctors
     void viewDoctors() {
