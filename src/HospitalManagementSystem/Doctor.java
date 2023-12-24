@@ -101,9 +101,9 @@ public class Doctor extends JFrame {
 
             // Display the list of doctors in a JOptionPane
             StringBuilder doctorInfo = new StringBuilder("Doctors:\n");
-            doctorInfo.append("|-----------------------------------------------------------------------------|\n");
+            doctorInfo.append("|-----------+------------------+--------------------+-------------------------|\n");
             doctorInfo.append("| Doctor Id | Name             | Specialization     | Enrollment Date         |\n");
-            doctorInfo.append("|-----------------------------------------------------------------------------|\n");
+            doctorInfo.append("|-----------+------------------+--------------------+-------------------------|\n");
 
             while (resultSet.next()) {
                 int id = resultSet.getInt("id");
