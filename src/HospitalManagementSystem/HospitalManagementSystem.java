@@ -150,9 +150,9 @@ public class HospitalManagementSystem extends JFrame {
 
             if (resultSet.next()) {
                 StringBuilder appointmentInfo = new StringBuilder("Appointments:\n");
-                appointmentInfo.append("|-----------------------------------------------------------------------------|\n");
-                appointmentInfo.append("| Appointment ID | Patient ID | Doctor ID | Appointment Date         |\n");
-                appointmentInfo.append("|-----------------------------------------------------------------------------|\n");
+                appointmentInfo.append("|----------------+------------+-----------+-----------------------------------|\n");
+                appointmentInfo.append("| Appointment ID | Patient ID | Doctor ID | Appointment Date                  |\n");
+                appointmentInfo.append("|----------------+------------+-----------+-----------------------------------|\n");
 
                 do {
                     try {
