@@ -53,6 +53,7 @@ public class HospitalManagementSystem extends JFrame {
     }
 
     private boolean isValidLogin(String username, String password) {
+        
         return username.equals("admin") && password.equals("admin");
     }
 
@@ -162,7 +163,7 @@ public class HospitalManagementSystem extends JFrame {
                         String appointmentDate = resultSet.getString("appointment_date");
 
                         appointmentInfo.append(String.format("| %-15s | %-10s | %-9s | %-25s\n", appointmentId, patientId, doctorId, appointmentDate));
-                        appointmentInfo.append("|------------------------------------------------------------------------------|\n");
+                        appointmentInfo.append("|----------------+------------+-----------+-----------------------------------|\n");
                     } catch (SQLException e) {
                         e.printStackTrace();
                         JOptionPane.showMessageDialog(this, "Error retrieving appointment information: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
@@ -185,6 +186,7 @@ public class HospitalManagementSystem extends JFrame {
         SwingUtilities.invokeLater(new Runnable() {
             @Override
             public void run() {
+            //SQL connection is here
                 Connection connection;
                 try {
                     connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/hospital", "root", "abu123");
