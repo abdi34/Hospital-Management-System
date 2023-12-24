@@ -135,10 +135,11 @@ public class HospitalManagementSystem extends JFrame {
     private void bookAppointment() {
         JTextField patientIdField = new JTextField();
         JTextField doctorIdField = new JTextField();
-
+        JTextField dateField = new JTextField();
         Object[] message = {
                 "Patient ID:", patientIdField,
-                "Doctor ID:", doctorIdField
+                "Doctor ID:", doctorIdField,
+                "Date(YYYY-MM-DD):", dateField,
         };
 
         int option = JOptionPane.showConfirmDialog(null, message, "Book Appointment", JOptionPane.OK_CANCEL_OPTION);
