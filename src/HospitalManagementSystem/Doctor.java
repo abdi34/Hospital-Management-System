@@ -24,6 +24,7 @@ public class Doctor extends JFrame {
 
         // Create buttons
         JButton addDoctorButton = new JButton("Add Doctor");
+        JButton deleteDoctorButton = new JButton("Delete Doctor");
         JButton viewDoctorsButton = new JButton("View Doctors");
         JButton checkDoctorButton = new JButton("Check Doctor");
 
@@ -32,6 +33,7 @@ public class Doctor extends JFrame {
         add(addDoctorButton);
         add(viewDoctorsButton);
         add(checkDoctorButton);
+        add(deleteDoctorButton);
 
         // Add action listeners to the buttons
         addDoctorButton.addActionListener(new ActionListener() {
@@ -54,6 +56,12 @@ public class Doctor extends JFrame {
                 checkDoctor();
             }
         });
+        deleteDoctorButton.addActionListener(new ActionListener() {
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            deleteDoctor();
+        }
+    });
     }
 
     // Method to add a new doctor
@@ -89,6 +97,29 @@ public class Doctor extends JFrame {
             JOptionPane.showMessageDialog(this, "Don't slack off Add The Required Information.", "Error", JOptionPane.ERROR_MESSAGE);
         }
     }
+    // Method to delete a doctor
+    private void deleteDoctor() {
+    String idString = JOptionPane.showInputDialog("Enter Doctor ID:");
+    int id = Integer.parseInt(idString);
+
+    try {
+        // SQL query to delete a doctor by ID from the 'new_doctors' table
+        String query = "DELETE FROM new_doctors WHERE id = ?";
+        PreparedStatement preparedStatement = connection.prepareStatement(query);
+        preparedStatement.setInt(1, id);
+
+        // Execute the query and check if the doctor was deleted successfully
+        int affectedRows = preparedStatement.executeUpdate();
+        if (affectedRows > 0) {
+            JOptionPane.showMessageDialog(this, "Doctor Deleted Successfully!!");
+        } else {
+            JOptionPane.showMessageDialog(this, "Failed to delete Doctor. Doctor with ID " + id + " does not exist!");
+        }
+    } catch (SQLException ex) {
+        ex.printStackTrace();
+        JOptionPane.showMessageDialog(this, "Error: " + ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+    }
+}
 
     // Method to view all doctors
     void viewDoctors() {
