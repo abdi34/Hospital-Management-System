@@ -47,7 +47,7 @@ public class Doctor extends JFrame {
                 viewDoctors();
             }
         });
-
+       
         checkDoctorButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -79,7 +79,7 @@ public class Doctor extends JFrame {
                 } else {
                     JOptionPane.showMessageDialog(this, "Failed to add Doctor!!");
                 }
-
+               // Checks SQL exceptions
             } catch (SQLException ex) {
                 ex.printStackTrace();
                 JOptionPane.showMessageDialog(this, "Error: " + ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
