@@ -27,4 +27,8 @@ As the requirements of the Hospital Management System evolve, the Appointment cl
 
                        Technologies Used
                     Programming Language: Java
-                       Database: MySql
+                       Database: MySql workbench 
+                       GitBash
+                       IntellIJ idea IDE(Java)
+                       YouTube(Referring)
+                       
