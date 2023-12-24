@@ -67,7 +67,7 @@ public class HospitalManagementSystem extends JFrame {
         JButton viewAppointmentsButton = new JButton("View Appointments");
         JButton bookAppointmentButton = new JButton("Book Appointment");
         JButton exitButton = new JButton("Exit");
-
+              // Add a button and a label
         mainPanel.setLayout(new GridLayout(7, 1));
         mainPanel.add(addPatientButton);
         mainPanel.add(viewPatientsButton);
