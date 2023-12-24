@@ -55,7 +55,44 @@ public class HospitalManagementSystem extends JFrame {
     private boolean isValidLogin(String username, String password) {
         return username.equals("admin") && password.equals("admin");
     }
-//this is also one
+
+     private void showMainGUI() {
+        mainPanel = new JPanel();
+
+        JButton addPatientButton = new JButton("Add Patient");
+        JButton viewPatientsButton = new JButton("View Patients");
+        JButton addDoctorButton = new JButton("Add Doctor");
+        JButton viewDoctorsButton = new JButton("View Doctors");
+        JButton viewAppointmentsButton = new JButton("View Appointments");
+        JButton bookAppointmentButton = new JButton("Book Appointment");
+        JButton exitButton = new JButton("Exit");
+
+        mainPanel.setLayout(new GridLayout(7, 1));
+        mainPanel.add(addPatientButton);
+        mainPanel.add(viewPatientsButton);
+        mainPanel.add(addDoctorButton);
+        mainPanel.add(viewDoctorsButton);
+        mainPanel.add(viewAppointmentsButton);
+        mainPanel.add(bookAppointmentButton);
+        mainPanel.add(exitButton);
+
+        patientGUI = new Patient(connection, scanner);
+        doctorGUI = new Doctor(connection, scanner);
+
+        addPatientButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                patientGUI.setVisible(true);
+            }
+        });
+
+        viewPatientsButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                patientGUI.viewPatients();
+            }
+        });
+
         bookAppointmentButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
