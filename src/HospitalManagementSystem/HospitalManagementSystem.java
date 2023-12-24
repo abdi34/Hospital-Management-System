@@ -53,13 +53,12 @@ public class HospitalManagementSystem extends JFrame {
     }
 
     private boolean isValidLogin(String username, String password) {
-        
         return username.equals("admin") && password.equals("admin");
     }
 
-     private void showMainGUI() {
+    private void showMainGUI() {
         mainPanel = new JPanel();
-          //Add Butoons
+
         JButton addPatientButton = new JButton("Add Patient");
         JButton viewPatientsButton = new JButton("View Patients");
         JButton addDoctorButton = new JButton("Add Doctor");
@@ -67,7 +66,7 @@ public class HospitalManagementSystem extends JFrame {
         JButton viewAppointmentsButton = new JButton("View Appointments");
         JButton bookAppointmentButton = new JButton("Book Appointment");
         JButton exitButton = new JButton("Exit");
-              // Add a button and a label
+
         mainPanel.setLayout(new GridLayout(7, 1));
         mainPanel.add(addPatientButton);
         mainPanel.add(viewPatientsButton);
@@ -91,6 +90,20 @@ public class HospitalManagementSystem extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 patientGUI.viewPatients();
+            }
+        });
+
+        addDoctorButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                doctorGUI.setVisible(true);
+            }
+        });
+
+        viewDoctorsButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                doctorGUI.viewDoctors();
             }
         });
 
@@ -122,11 +135,10 @@ public class HospitalManagementSystem extends JFrame {
     private void bookAppointment() {
         JTextField patientIdField = new JTextField();
         JTextField doctorIdField = new JTextField();
-        JTextField dateField = new JTextField();
+
         Object[] message = {
                 "Patient ID:", patientIdField,
-                "Doctor ID:", doctorIdField,
-                "Date(YYYY-MM-DD):", dateField,
+                "Doctor ID:", doctorIdField
         };
 
         int option = JOptionPane.showConfirmDialog(null, message, "Book Appointment", JOptionPane.OK_CANCEL_OPTION);
@@ -152,9 +164,9 @@ public class HospitalManagementSystem extends JFrame {
 
             if (resultSet.next()) {
                 StringBuilder appointmentInfo = new StringBuilder("Appointments:\n");
-                appointmentInfo.append("|----------------+------------+-----------+-----------------------------------|\n");
-                appointmentInfo.append("| Appointment ID | Patient ID | Doctor ID | Appointment Date                  |\n");
-                appointmentInfo.append("|----------------+------------+-----------+-----------------------------------|\n");
+                appointmentInfo.append("|-----------------------------------------------------------------------------|\n");
+                appointmentInfo.append("| Appointment ID | Patient ID | Doctor ID | Appointment Date         |\n");
+                appointmentInfo.append("|-----------------------------------------------------------------------------|\n");
 
                 do {
                     try {
@@ -164,7 +176,7 @@ public class HospitalManagementSystem extends JFrame {
                         String appointmentDate = resultSet.getString("appointment_date");
 
                         appointmentInfo.append(String.format("| %-15s | %-10s | %-9s | %-25s\n", appointmentId, patientId, doctorId, appointmentDate));
-                        appointmentInfo.append("|----------------+------------+-----------+-----------------------------------|\n");
+                        appointmentInfo.append("|------------------------------------------------------------------------------|\n");
                     } catch (SQLException e) {
                         e.printStackTrace();
                         JOptionPane.showMessageDialog(this, "Error retrieving appointment information: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
@@ -187,7 +199,6 @@ public class HospitalManagementSystem extends JFrame {
         SwingUtilities.invokeLater(new Runnable() {
             @Override
             public void run() {
-            //SQL connection is here
                 Connection connection;
                 try {
                     connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/hospital", "root", "abu123");
