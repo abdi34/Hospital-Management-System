@@ -25,7 +25,7 @@ public class Doctor extends JFrame {
         // Create buttons
         JButton addDoctorButton = new JButton("Add Doctor");
         JButton viewDoctorsButton = new JButton("View Doctors");
-        JButton checkDoctorButton = new JButton("Search Doctor");
+        JButton checkDoctorButton = new JButton("Check Doctor");
 
         // Set up the layout
         setLayout(new GridLayout(4, 1));
@@ -47,7 +47,7 @@ public class Doctor extends JFrame {
                 viewDoctors();
             }
         });
-       
+
         checkDoctorButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -79,7 +79,7 @@ public class Doctor extends JFrame {
                 } else {
                     JOptionPane.showMessageDialog(this, "Failed to add Doctor!!");
                 }
-               // Checks SQL exceptions
+
             } catch (SQLException ex) {
                 ex.printStackTrace();
                 JOptionPane.showMessageDialog(this, "Error: " + ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
@@ -101,9 +101,9 @@ public class Doctor extends JFrame {
 
             // Display the list of doctors in a JOptionPane
             StringBuilder doctorInfo = new StringBuilder("Doctors:\n");
-            doctorInfo.append("|-----------+------------------+--------------------+-------------------------|\n");
+            doctorInfo.append("|-----------------------------------------------------------------------------|\n");
             doctorInfo.append("| Doctor Id | Name             | Specialization     | Enrollment Date         |\n");
-            doctorInfo.append("|-----------+------------------+--------------------+-------------------------|\n");
+            doctorInfo.append("|-----------------------------------------------------------------------------|\n");
 
             while (resultSet.next()) {
                 int id = resultSet.getInt("id");
@@ -113,8 +113,7 @@ public class Doctor extends JFrame {
 
                 // Append doctor information to the StringBuilder
                 doctorInfo.append(String.format("| %-10s | %-18s | %-16s | %-17s\n", id, name, specialization, enrollmentDate));
-                  doctorInfo.append("|-----------+------------------+--------------------+-------------------------|\n");
-               
+                doctorInfo.append("|------------------------------------------------------------------------------|\n");
             }
 
             // Display the information in a JOptionPane
