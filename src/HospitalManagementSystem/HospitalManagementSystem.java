@@ -59,7 +59,7 @@ public class HospitalManagementSystem extends JFrame {
 
      private void showMainGUI() {
         mainPanel = new JPanel();
-
+          //Add Butoons
         JButton addPatientButton = new JButton("Add Patient");
         JButton viewPatientsButton = new JButton("View Patients");
         JButton addDoctorButton = new JButton("Add Doctor");
