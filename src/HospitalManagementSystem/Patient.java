@@ -111,9 +111,9 @@ public class Patient extends JFrame {
 
             // Display the list of patients in a JOptionPane
             StringBuilder patientInfo = new StringBuilder("Patients:\n");
-            patientInfo.append("|----------+----------------------------+-----------+--------------|\n");
+            patientInfo.append("|------------------------------------------------------------------|\n");
             patientInfo.append("|Patient Id| Name                       | Age       | Gender       |\n");
-            patientInfo.append("|----------+----------------------------+-----------+--------------|\n");
+            patientInfo.append("|------------------------------------------------------------------|\n");
 
             while (resultSet.next()) {
                 int id = resultSet.getInt("id");
